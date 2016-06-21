@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>eu.eudat.b2access</groupId>
+	<artifactId>balanaDemonstrator</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<description>Demonstrator application implementing PDP and PEP</description>
+	
+	<properties>
+		<balana.version>1.0.3</balana.version>
+		<log4j.version>1.2.17</log4j.version>
+	</properties>
+	
+	<parent>
+		<artifactId>xacmlDemonstrator</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<groupId>eu.eudat.b2access</groupId>
+	</parent>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.wso2.balana</groupId>
+			<artifactId>org.wso2.balana</artifactId>
+			<version>${balana.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.wso2.balana</groupId>
+			<artifactId>org.wso2.balana.utils</artifactId>
+			<version>${balana.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>eu.eudat.b2access</groupId>
+			<artifactId>xacml3types</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>eu.eu-emi</groupId>
+			<artifactId>xmltypes</artifactId>
+			<version>1.3.0</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<repositories>
+		<repository>
+			<id>wso2-nexus</id>
+			<url>http://maven.wso2.org/nexus/content/repositories/releases</url>
+		</repository>
+	</repositories>
+</project>
