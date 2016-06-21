@@ -23,6 +23,9 @@ public class DataServicePDP {
 		}
 	}
 
+	/**
+	 * Initialise Balana object
+	 * */	
 	private void initBalana() throws IOException {
 		if (balana == null) {
 			System.setProperty(ConfigurationStore.PDP_CONFIG_PROPERTY, "src/main/conf/xacmlPdpConfig.xml");
