@@ -9,6 +9,6 @@ The Project is an XACML 3.0 Application using Balana library to demonstrate a fl
 	
 * checkout and change to project directory
 * Build
-    mvn clean install -DskipTests
+** mvn clean install -DskipTests
 * Run
     
