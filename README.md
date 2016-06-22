@@ -8,7 +8,6 @@ The Project is an XACML 3.0 Application using Balana library to demonstrate a fl
 ## Build and run instructions
 	
 * checkout and change to project directory
-* Build
-** mvn clean install -DskipTests
-* Run
+* Build 'mvn clean install -DskipTests'
+* Run 'mvn exec:java -Dexec.mainClass="com.example.Main"
     
