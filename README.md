@@ -11,4 +11,4 @@ The Project is an XACML 3.0 Application using Balana library to demonstrate a fl
 * Build '$> mvn clean install -DskipTests'
 * Run '$> mvn exec:java -Dexec.mainClass="eu.eudat.b2access.balana.DataServiceClient"'
     
-**NOTE:** The project only expolits the features from core [XACML 3.0](http://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.html) specification
+**NOTE:** The project only expolits some features of the core profile of the [XACML 3.0](http://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.html) specification, one of the reasons is the underlying base XACML library [Balana](https://github.com/wso2/balana) does not support REST and Delegation profile.
