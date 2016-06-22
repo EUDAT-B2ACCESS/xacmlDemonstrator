@@ -11,3 +11,4 @@ The Project is an XACML 3.0 Application using Balana library to demonstrate a fl
 * Build '$> mvn clean install -DskipTests'
 * Run '$> mvn exec:java -Dexec.mainClass="eu.eudat.b2access.balana.DataServiceClient"'
     
+**NOTE:** The project only expolits the features from core [XACML 3.0](http://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.html) specification
