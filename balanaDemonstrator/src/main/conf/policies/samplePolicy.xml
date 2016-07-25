@@ -6,10 +6,12 @@
       <Target>
          <AnyOf>
             <AllOf>
+            <!-- Target resource -->
                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-regexp-match">
-                  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http://localhost:8280/services/echo/</AttributeValue>
+                  <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">data</AttributeValue>
                   <AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"></AttributeDesignator>
                </Match>
+				<!-- Target action-->
                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
                   <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">read</AttributeValue>
                   <AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"></AttributeDesignator>
@@ -18,13 +20,22 @@
          </AnyOf>
       </Target>
       <Condition>
+         <!-- which group is allowed to access the data resource and perform the read operation -->
          <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-subset">
             <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">admin</AttributeValue>
             </Apply>
             <AttributeDesignator AttributeId="group" Category="urn:oasis:names:tc:xacml:3.0:group" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"></AttributeDesignator>
          </Apply>
+         <!-- which subject is allowed to access the data resource and perform the read operation -->
+         <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-subset">
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
+               <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">alex</AttributeValue>
+            </Apply>
+            <AttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"></AttributeDesignator>
+         </Apply>
       </Condition>
    </Rule>
+   <!-- deny for every other user -->
    <Rule Effect="Deny" RuleId="deny-rule"></Rule>
 </Policy>

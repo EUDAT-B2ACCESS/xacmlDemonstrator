@@ -19,40 +19,50 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResultType;
 
 public class DataServicePEP {
 	DataServicePDP pdp;
-
+	StringBuffer msg; 
 	public DataServicePEP() {
 		System.out.println("Initialising PDP");
 		pdp = new DataServicePDP();
+		msg = new StringBuffer();
 	}
 
-	public void authorise(String user, String group) throws AuthorisationException{
-		String request = createRequest(user, group);
+	public void authorise(final String user, final String group, final String action, final String resource) throws AuthorisationException{
+		String request = createRequest(user, group, action, resource);
 		System.out.println("\nPDP Request:");
+		msg.append("Preparing a PDP request with parameters:"+"\n\t* user:"+user+"\n\t* group:"+group+"\n\t* action:"+action+"\n\t* resource:"+resource+"\n\n");
 		ResultType rt = null;
 		try {
 			printRequest(request);
 			String response = pdp.evaluate(request);
 			rt = getResult(response);
-			printResponse(response);
+
+			if (rt.getDecision().equals(DecisionType.PERMIT)) {
+				String m = "Access granted to User: "+user+" of Group:"+group;
+				System.out.println(m);
+				msg.append(m+"\n");
+				printResponse(response);
+			}
+
+			if (rt.getDecision().equals(DecisionType.DENY)) {
+				String m = "Access denied to User: "+user+" of Group:"+group;
+				System.out.println(m);
+				msg.append(m+"\n");
+				printResponse(response);
+				throw new AuthorisationException(m);				
+			}
+
+			if (rt.getDecision().equals(DecisionType.INDETERMINATE)) {
+				System.out.println("Indeterminate");
+			}
+
+			if (rt.getDecision().equals(DecisionType.NOT_APPLICABLE)) {
+				System.out.println("Not applicable");
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (rt.getDecision().equals(DecisionType.PERMIT)) {
-			System.out.println("Permit: Access Granted");
-		}
 		
-		if (rt.getDecision().equals(DecisionType.DENY)) {
-			System.out.println("Access Denied to User: "+user+" of Group:"+group);
-			throw new AuthorisationException("Access Denied to User: "+user+" of Group:"+group);
-		}
-		
-		if (rt.getDecision().equals(DecisionType.INDETERMINATE)) {
-			System.out.println("Indeterminate");
-		}
-		
-		if (rt.getDecision().equals(DecisionType.NOT_APPLICABLE)) {
-			System.out.println("Not applicable");
-		}
 	}
 
 	private ResultType getResult(String response) throws Exception {
@@ -64,11 +74,11 @@ public class DataServicePEP {
 		return r.getResult().get(0);
 	}
 
-	private String createRequest(String user, String group) {
+	private String createRequest(String user, String group, String action, String resource) {
 		return "<Request xmlns=\"urn:oasis:names:tc:xacml:3.0:core:schema:wd-17\" CombinedDecision=\"false\" ReturnPolicyIdList=\"false\">\n"
 				+ "<Attributes Category=\"urn:oasis:names:tc:xacml:3.0:attribute-category:action\">\n"
 				+ "<Attribute AttributeId=\"urn:oasis:names:tc:xacml:1.0:action:action-id\" IncludeInResult=\"false\">\n"
-				+ "<AttributeValue DataType=\"http://www.w3.org/2001/XMLSchema#string\">read</AttributeValue>\n"
+				+ "<AttributeValue DataType=\"http://www.w3.org/2001/XMLSchema#string\">" +action + "</AttributeValue>\n"
 				+ "</Attribute>\n" + "</Attributes>\n"
 				+ "<Attributes Category=\"urn:oasis:names:tc:xacml:1.0:subject-category:access-subject\">\n"
 				+ "<Attribute AttributeId=\"urn:oasis:names:tc:xacml:1.0:subject:subject-id\" IncludeInResult=\"false\">\n"
@@ -77,7 +87,7 @@ public class DataServicePEP {
 				+ "<Attributes Category=\"urn:oasis:names:tc:xacml:3.0:attribute-category:resource\">\n"
 				+ "<Attribute AttributeId=\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\" IncludeInResult=\"false\">\n"
 				+ "<AttributeValue DataType=\"http://www.w3.org/2001/XMLSchema#string\">"
-				+ "http://localhost:8280/services/echo/" + "</AttributeValue>\n" + "</Attribute>\n" + "</Attributes>\n"
+				+ resource + "</AttributeValue>\n" + "</Attribute>\n" + "</Attributes>\n"
 				+ "<Attributes Category=\"urn:oasis:names:tc:xacml:3.0:group\">\n"
 				+ "<Attribute AttributeId=\"group\" IncludeInResult=\"false\">"
 				+ "<AttributeValue DataType=\"http://www.w3.org/2001/XMLSchema#string\">" + group + "</AttributeValue>"
@@ -106,6 +116,11 @@ public class DataServicePEP {
 		String s = new String();
 		xml.write(s);
 		System.out.println(xml);
+		msg.append(xml+"\n");
+	}
+	
+	public String getMessage(){
+		return msg.toString();
 	}
 
 }
