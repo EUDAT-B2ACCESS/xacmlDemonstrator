@@ -5,8 +5,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 import eu.eudat.b2access.balana.DataService;
+import eu.eudat.b2access.balana.DefaultConfig;
 
 public class DataServiceClient {
+        
+        
 	public static void main(String[] args) {
 //		localClient();
 		remoteClient();
@@ -24,12 +27,12 @@ public class DataServiceClient {
 	private static void remoteClient() {
 		Client client = ClientBuilder.newClient();
 		//Calling the data service with minimal rights 
-		String resultPermit = client.target("http://localhost:8080").path("/data").queryParam("user", "alex")
+		String resultPermit = client.target("http://"+DefaultConfig.HOSTNAME+":"+DefaultConfig.PORT).path("/data").queryParam("user", "alex")
 				.queryParam("group", "admin").request().get(String.class);
 		System.out.println(resultPermit);
 		
 		//Calling the data service with priviliged rights
-		String resultDeny = client.target("http://localhost:8080").path("/data").queryParam("user", "bob")
+		String resultDeny = client.target("http://"+DefaultConfig.HOSTNAME+":"+DefaultConfig.PORT).path("/data").queryParam("user", "bob")
 				.queryParam("group", "other").request().get(String.class);
 		System.out.println(resultDeny);
 

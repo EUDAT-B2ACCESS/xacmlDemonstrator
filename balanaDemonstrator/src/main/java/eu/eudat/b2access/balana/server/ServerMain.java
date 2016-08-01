@@ -1,5 +1,6 @@
 package eu.eudat.b2access.balana.server;
 
+import eu.eudat.b2access.balana.DefaultConfig;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,8 +14,7 @@ import org.glassfish.jersey.servlet.ServletContainer;
 public class ServerMain {
 	Server server = null;
 	private ServerMain() {
-		server = new Server(8080);
-		
+		server = new Server(DefaultConfig.PORT);
 	}
 	
 	private void start() throws Exception{
