@@ -51,6 +51,7 @@
 			<artifactId>jersey-jetty-connector</artifactId>
 			<version>${jersey.version}</version>
 		</dependency>
+                <!-- Required only when you are using JAX-RS Client -->
 		<dependency>
 			<groupId>org.glassfish.jersey.core</groupId>
 			<artifactId>jersey-client</artifactId>
@@ -60,12 +61,6 @@
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<!-- if your container implements Servlet API older than 3.0, use "jersey-container-servlet-core" -->
 			<artifactId>jersey-container-servlet</artifactId>
-			<version>${jersey.version}</version>
-		</dependency>
-		<!-- Required only when you are using JAX-RS Client -->
-		<dependency>
-			<groupId>org.glassfish.jersey.core</groupId>
-			<artifactId>jersey-client</artifactId>
 			<version>${jersey.version}</version>
 		</dependency>
 		<dependency>
