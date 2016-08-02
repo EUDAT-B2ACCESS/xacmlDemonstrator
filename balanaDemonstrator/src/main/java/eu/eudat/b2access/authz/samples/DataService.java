@@ -1,4 +1,4 @@
-package eu.eudat.b2access.authz;
+package eu.eudat.b2access.authz.samples;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;

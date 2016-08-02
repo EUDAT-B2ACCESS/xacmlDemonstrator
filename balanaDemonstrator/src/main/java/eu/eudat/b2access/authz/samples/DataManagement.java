@@ -1,4 +1,4 @@
-package eu.eudat.b2access.authz;
+package eu.eudat.b2access.authz.samples;
 
 import java.io.IOException;
 import java.io.StringReader;

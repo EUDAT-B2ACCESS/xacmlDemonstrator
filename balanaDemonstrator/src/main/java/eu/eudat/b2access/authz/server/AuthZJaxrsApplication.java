@@ -6,8 +6,8 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import eu.eudat.b2access.authz.DataService;
 import eu.eudat.b2access.authz.pdp.PdpResource;
+import eu.eudat.b2access.authz.samples.DataService;
 
 public class AuthZJaxrsApplication extends Application {
 	@Override

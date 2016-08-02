@@ -1,4 +1,4 @@
-package eu.eudat.b2access.authz;
+package eu.eudat.b2access.authz.samples;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -11,6 +11,8 @@ import javax.xml.bind.Unmarshaller;
 
 import org.wso2.balana.ctx.xacml3.Result;
 
+import eu.eudat.b2access.authz.AuthorisationException;
+import eu.eudat.b2access.authz.Utils;
 import eu.eudat.b2access.authz.pdp.Pdp;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.DecisionType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ObjectFactory;
