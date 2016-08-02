@@ -1,7 +1,7 @@
 package eu.eudat.b2access.balana.server;
 
 import eu.eudat.b2access.authz.server.AuthZJaxrsApplication;
-import eu.eudat.b2access.balana.DefaultConfig;
+import eu.eudat.b2access.balana.ClientConfig;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +15,7 @@ import org.glassfish.jersey.servlet.ServletContainer;
 public class ServerMain {
 	Server server = null;
 	private ServerMain() {
-		server = new Server(DefaultConfig.PORT);
+		server = new Server(8085);
 	}
 	
 	private void start() throws Exception{
