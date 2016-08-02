@@ -5,6 +5,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 import eu.eudat.b2access.authz.DataService;
+import eu.eudat.b2access.balana.ClientConfig;
 
 public class DataServiceClient {
 	public static void main(String[] args) {
@@ -22,6 +23,7 @@ public class DataServiceClient {
 	}
 
 	private static void remoteClient() {
+		ClientConfig config =new ClientConfig("src/test/conf/client.config");
 		Client client = ClientBuilder.newClient();
 		//Calling the data service with minimal rights 
 		String resultPermit = client.target("http://localhost:8085").path("/data").queryParam("user", "alex")
