@@ -25,17 +25,20 @@ public class Pdp {
 
 	/**
 	 * Initialise Balana object
+	 * @param policyDirPath 
+	 * @param xacmlConfigPath 
 	 * */	
-	private void initBalana() throws IOException {
+	private void initBalana(String xacmlConfigPath, String policyDirPath) throws IOException {
 		if (balana == null) {
-			System.setProperty(ConfigurationStore.PDP_CONFIG_PROPERTY, "src/main/conf/xacmlPdpConfig.xml");
-			System.setProperty(FileBasedPolicyFinderModule.POLICY_DIR_PROPERTY, "src/main/conf/policies");
+			System.out.println("initialising balana");
+			System.setProperty(ConfigurationStore.PDP_CONFIG_PROPERTY, xacmlConfigPath);
+			System.setProperty(FileBasedPolicyFinderModule.POLICY_DIR_PROPERTY, policyDirPath);
 			balana = Balana.getInstance();			
 		}
 	}
-	public Pdp() {
+	public Pdp(String xacmlConfigPath, String policyDirPath) {
 		try {
-			initBalana();
+			initBalana(xacmlConfigPath,policyDirPath);
 			initPDP();
 		} catch (IOException e) {
 			e.printStackTrace();

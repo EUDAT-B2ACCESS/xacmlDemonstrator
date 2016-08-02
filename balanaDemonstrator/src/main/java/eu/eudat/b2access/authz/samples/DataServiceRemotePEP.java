@@ -12,7 +12,9 @@ import javax.xml.bind.Unmarshaller;
 import org.wso2.balana.ctx.xacml3.Result;
 
 import eu.eudat.b2access.authz.AuthorisationException;
+import eu.eudat.b2access.authz.client.PdpClient;
 import eu.eudat.b2access.authz.pdp.Pdp;
+import eu.eudat.b2access.authz.server.XACMLServer;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.DecisionType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ObjectFactory;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.RequestType;
@@ -20,17 +22,17 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResponseType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResultType;
 
 /**
- * The PEP class responsible to call-out to a remote PDP (in same JVM though)
+ * The PEP class responsible to call-out to a remote PDP
  * 
  * @author a.memon
  *
  */
 public class DataServiceRemotePEP {
-	Pdp pdp;
-	StringBuffer msg; 
+	StringBuffer msg;
+	PdpClient pdp;
 	public DataServiceRemotePEP() {
 		System.out.println("Initialising PDP");
-		pdp = new Pdp();
+		pdp = new PdpClient(XACMLServer.getConfig());
 		msg = new StringBuffer();
 	}
 

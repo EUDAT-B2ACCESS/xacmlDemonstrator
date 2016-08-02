@@ -14,6 +14,8 @@ import org.wso2.balana.ctx.xacml3.Result;
 import eu.eudat.b2access.authz.AuthorisationException;
 import eu.eudat.b2access.authz.Utils;
 import eu.eudat.b2access.authz.pdp.Pdp;
+import eu.eudat.b2access.authz.server.XACMLServer;
+import eu.eudat.b2access.authz.server.XACMLServerConfig;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.DecisionType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ObjectFactory;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.RequestType;
@@ -23,9 +25,10 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResultType;
 public class DataServiceLocalPEP {
 	Pdp pdp;
 	StringBuffer msg; 
+	
 	public DataServiceLocalPEP() {
 		System.out.println("Initialising PDP");
-		pdp = new Pdp();
+		pdp = new Pdp(XACMLServer.getConfig().getXACMLPdpConfigPath(), XACMLServer.getConfig().getXACMLPolicyDirPath());
 		msg = new StringBuffer();
 	}
 
@@ -38,8 +41,9 @@ public class DataServiceLocalPEP {
 			printRequest(request);
 			String response = pdp.evaluate(request);
 			
-			ResponseType r = (ResponseType)Utils.StringToJAXBElement(response).getValue();
-			rt = r.getResult().get(0);
+			JAXBElement<ResponseType> r = (JAXBElement<ResponseType>)Utils.StringToJAXBElement(response, ResponseType.class);
+			ResponseType t = r.getValue();
+			rt = t.getResult().get(0);
 			
 			if (rt.getDecision().equals(DecisionType.PERMIT)) {
 				String m = "Access granted to User: "+user+" of Group:"+group;

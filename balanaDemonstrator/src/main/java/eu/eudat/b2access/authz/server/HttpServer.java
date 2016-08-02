@@ -28,7 +28,16 @@ public class HttpServer {
 	public void start(){
 		try {
 			server.start();
-			server.join();
+//			server.join();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void stop(){
+		try {
+			server.stop();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
