@@ -1,5 +1,6 @@
 package eu.eudat.b2access.balana.server;
 
+import eu.eudat.b2access.authz.server.AuthZJaxrsApplication;
 import eu.eudat.b2access.balana.DefaultConfig;
 import java.util.HashMap;
 import java.util.Map;

@@ -5,7 +5,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
-import eu.eudat.b2access.balana.DataService;
+import eu.eudat.b2access.authz.DataService;
 import eu.eudat.b2access.balana.DefaultConfig;
 
 public class DataServiceClient {
