@@ -1,4 +1,4 @@
-package eu.eudat.b2access.balana;
+package eu.eudat.b2access.authz;
 
 public class AuthorisationException extends Exception {
 	public AuthorisationException(String msg) {

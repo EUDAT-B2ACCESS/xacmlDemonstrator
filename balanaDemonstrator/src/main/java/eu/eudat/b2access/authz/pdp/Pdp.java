@@ -1,4 +1,4 @@
-package eu.eudat.b2access.balana;
+package eu.eudat.b2access.authz.pdp;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import org.wso2.balana.PDP;
 import org.wso2.balana.PDPConfig;
 import org.wso2.balana.finder.impl.FileBasedPolicyFinderModule;
 
-public class DataServicePDP {
+public class Pdp {
 	private static Balana balana;
 	private static PDP pdp;
 	/**
@@ -33,7 +33,7 @@ public class DataServicePDP {
 			balana = Balana.getInstance();			
 		}
 	}
-	public DataServicePDP() {
+	public Pdp() {
 		try {
 			initBalana();
 			initPDP();

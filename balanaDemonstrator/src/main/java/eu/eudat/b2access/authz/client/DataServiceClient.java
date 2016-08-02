@@ -1,10 +1,10 @@
-package eu.eudat.b2access.balana.client;
+package eu.eudat.b2access.authz.client;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
-import eu.eudat.b2access.balana.DataService;
+import eu.eudat.b2access.authz.DataService;
 
 public class DataServiceClient {
 	public static void main(String[] args) {

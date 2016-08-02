@@ -1,4 +1,4 @@
-package eu.eudat.b2access.balana;
+package eu.eudat.b2access.authz;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -11,18 +11,19 @@ import javax.xml.bind.Unmarshaller;
 
 import org.wso2.balana.ctx.xacml3.Result;
 
+import eu.eudat.b2access.authz.pdp.Pdp;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.DecisionType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ObjectFactory;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.RequestType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResponseType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResultType;
 
-public class DataServicePEP {
-	DataServicePDP pdp;
+public class DataServiceLocalPEP {
+	Pdp pdp;
 	StringBuffer msg; 
-	public DataServicePEP() {
+	public DataServiceLocalPEP() {
 		System.out.println("Initialising PDP");
-		pdp = new DataServicePDP();
+		pdp = new Pdp();
 		msg = new StringBuffer();
 	}
 
@@ -34,8 +35,10 @@ public class DataServicePEP {
 		try {
 			printRequest(request);
 			String response = pdp.evaluate(request);
-			rt = getResult(response);
-
+			
+			ResponseType r = (ResponseType)Utils.StringToJAXBElement(response).getValue();
+			rt = r.getResult().get(0);
+			
 			if (rt.getDecision().equals(DecisionType.PERMIT)) {
 				String m = "Access granted to User: "+user+" of Group:"+group;
 				System.out.println(m);

@@ -1,4 +1,4 @@
-package eu.eudat.b2access.balana;
+package eu.eudat.b2access.authz;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
@@ -14,9 +14,9 @@ import org.codehaus.jettison.json.JSONObject;
 
 @Path("/data")
 public class DataService {
-	DataServicePEP pep;
+	DataServiceLocalPEP pep;
 	public DataService() {
-		pep = new DataServicePEP();
+		pep = new DataServiceLocalPEP();
 	}
 
 	@GET

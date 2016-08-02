@@ -1,4 +1,4 @@
-package eu.eudat.b2access.balana;
+package eu.eudat.b2access.authz;
 
 import java.io.IOException;
 import java.io.StringReader;
