@@ -1,4 +1,4 @@
-package eu.eudat.b2access.balana;
+package eu.eudat.b2access.authz.client;
 
 import java.io.File;
 
