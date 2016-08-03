@@ -5,10 +5,13 @@ The Project is an XACML 3.0 Application using Balana library to demonstrate a fl
 * Java 1.8
 * Maven 3
 
-## Build and run instructions
+## Build and run instructions for local client
 	
 * checkout and change to project directory
 * Build '$> mvn clean install -DskipTests'
-* Run '$> mvn exec:java -Dexec.mainClass="eu.eudat.b2access.balana.DataServiceClient"'
-    
-**NOTE:** The project only expolits some features of the core profile of the [XACML 3.0](http://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.html) specification, one of the reasons is the underlying base XACML library [Balana](https://github.com/wso2/balana) does not support REST and Delegation profile.
+* Run local sample '$> mvn exec:java -Dexec.mainClass="eu.eudat.b2access.authz.samples.DataManagement"'
+
+## Build and run instructions for XACML 3.0 server and sample client
+* change to sub-project directory balanaDemonstrator and execute '$> mvn clean assembly:assembly -DskipTests'
+* go to target sub-directory and untar/unzip balanaDemonstrator-x.y.z.(tar.gz|zip) and change to the newly created directory
+* edit paths of the 'xacml configuration' inside 'conf/xacmlServer.config' and then execute '$> bin/start.sh'
