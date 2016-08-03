@@ -24,6 +24,7 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResponseType;
  * http://docs.oasis-open.org/xacml/3.0/xacml-3.0-core-spec-os-en.html#
  * _Toc325047260
  * 
+ * Sample class containing everything i.e. pep and pdp
  * @author a.memon
  *
  */

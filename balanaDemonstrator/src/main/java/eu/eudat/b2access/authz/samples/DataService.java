@@ -11,7 +11,12 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
 import org.codehaus.jettison.json.JSONObject;
-
+/***
+ * REST interface
+ * 
+ * @author a.memon
+ *
+ */
 @Path("/data")
 public class DataService {
 	DataServiceLocalPEP pep;
@@ -24,13 +29,13 @@ public class DataService {
 	public Response readRemote(@DefaultValue("bob") @QueryParam("user") String user, @DefaultValue("other") @QueryParam("group") String group) {
 		StringBuilder builder = new StringBuilder();
 		try {
-			System.out.println("Invoking remote data access....");
+			System.out.println("Invoking local data access....");
 			builder.append("------------------------ BEGIN -------------------------\n");
-			builder.append("Invoking remote data access....\n");
+			builder.append("Invoking local data access....\n");
 			pep.authorise(user, group, "read", "data");
 			builder.append(pep.getMessage()+"\n");
-			System.out.println("Remote data read!");
-			builder.append("Remote data read!\n");
+			System.out.println("local data read!");
+			builder.append("local data read!\n");
 			builder.append("------------------------ END -------------------------\n");
 		} catch (Exception e) {
 			e.printStackTrace();

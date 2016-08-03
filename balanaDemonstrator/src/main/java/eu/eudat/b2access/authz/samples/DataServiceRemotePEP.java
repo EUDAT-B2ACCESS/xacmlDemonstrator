@@ -31,15 +31,15 @@ public class DataServiceRemotePEP {
 	StringBuffer msg;
 	PdpClient pdp;
 	public DataServiceRemotePEP() {
-		System.out.println("Initialising PDP");
+		System.out.println("Initialising remote PDP");
 		pdp = new PdpClient(XACMLServer.getConfig());
 		msg = new StringBuffer();
 	}
 
 	public void authorise(final String user, final String group, final String action, final String resource) throws AuthorisationException{
 		String request = createRequest(user, group, action, resource);
-		System.out.println("\nPDP Request:");
-		msg.append("Preparing a PDP request with parameters:"+"\n\t* user:"+user+"\n\t* group:"+group+"\n\t* action:"+action+"\n\t* resource:"+resource+"\n\n");
+		System.out.println("\nRemote PDP Request:");
+		msg.append("Preparing a remote PDP request with parameters:"+"\n\t* user:"+user+"\n\t* group:"+group+"\n\t* action:"+action+"\n\t* resource:"+resource+"\n\n");
 		ResultType rt = null;
 		try {
 			printRequest(request);

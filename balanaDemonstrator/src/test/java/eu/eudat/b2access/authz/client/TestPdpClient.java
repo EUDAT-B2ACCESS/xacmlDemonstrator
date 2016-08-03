@@ -14,7 +14,7 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.StatusCodeType;
 
 import static org.junit.Assert.*;
 
-public class TestPdpClient extends TestServerBase {
+public class TestPdpClient /*extends TestServerBase*/ {
 	@Test
 	public void test() throws Exception {
 		PdpClient p = new PdpClient(getConfig());

@@ -12,8 +12,8 @@ public class DataServiceClient {
 	public static void main(String[] args) throws Exception {
 		XACMLServer server = new XACMLServer("src/main/conf/xacmlServer.config");
 		localClient();
-//		remoteClient();
-//		remotePdpClient();
+		remoteClient();
+		remotePdpClient();
 	}
 
 	private static void remotePdpClient() {
@@ -47,7 +47,7 @@ public class DataServiceClient {
 		ClientConfig config = new ClientConfig("src/test/conf/client.config");
 		Client client = ClientBuilder.newClient();
 		//Calling the data service with minimal rights 
-		String resultPermit = client.target("http://"+config.getHostname()+":"+config.getPort()).path("/data").queryParam("user", "alex")
+		String resultPermit = client.target("http://"+config.getHostname()+":"+config.getPort()).path("/dataRemotePdp").queryParam("user", "alex")
 				.queryParam("group", "admin").request().get(String.class);
 		System.out.println(resultPermit);
 		

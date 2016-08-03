@@ -45,7 +45,7 @@ public class DataServiceWithRemotePDP {
 	
 	public void read(String user, String group) {
 		try {
-			System.out.println("Invoking local data access....");
+			System.out.println("Invoking remote data access....");
 			pep.authorise(user, group, "read", "data");
 			System.out.println("Local data read!");	
 		} catch (Exception e) {

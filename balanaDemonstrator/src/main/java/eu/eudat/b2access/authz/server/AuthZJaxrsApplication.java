@@ -8,6 +8,7 @@ import javax.ws.rs.core.Application;
 
 import eu.eudat.b2access.authz.pdp.PdpResource;
 import eu.eudat.b2access.authz.samples.DataService;
+import eu.eudat.b2access.authz.samples.DataServiceWithRemotePDP;
 
 public class AuthZJaxrsApplication extends Application {
 	@Override
@@ -15,6 +16,7 @@ public class AuthZJaxrsApplication extends Application {
 		Set<Class<?>> s = new HashSet<Class<?>>();
 		System.out.println("Deploying Data Service");
         s.add(DataService.class);
+        s.add(DataServiceWithRemotePDP.class);
         System.out.println("Deploying PDP Service");
         s.add(PdpResource.class);
 		return s;
