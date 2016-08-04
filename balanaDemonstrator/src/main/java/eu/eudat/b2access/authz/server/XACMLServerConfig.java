@@ -45,5 +45,9 @@ public class XACMLServerConfig {
 	public String getPropertiesPath(){
 		return propsPath;
 	}
+	public String getConfigDirPath(){
+		File f = new File(getPropertiesPath());
+		return f.getParent();
+	}
 	
 }

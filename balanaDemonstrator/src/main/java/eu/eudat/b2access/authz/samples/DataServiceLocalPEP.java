@@ -12,10 +12,10 @@ import javax.xml.bind.Unmarshaller;
 import org.wso2.balana.ctx.xacml3.Result;
 
 import eu.eudat.b2access.authz.AuthorisationException;
-import eu.eudat.b2access.authz.Utils;
-import eu.eudat.b2access.authz.pdp.Pdp;
+import eu.eudat.b2access.authz.pdp.BalanaPdp;
 import eu.eudat.b2access.authz.server.XACMLServer;
 import eu.eudat.b2access.authz.server.XACMLServerConfig;
+import eu.eudat.b2access.authz.utils.Utils;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.DecisionType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ObjectFactory;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.RequestType;
@@ -23,12 +23,12 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResponseType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResultType;
 
 public class DataServiceLocalPEP {
-	Pdp pdp;
+	BalanaPdp pdp;
 	StringBuffer msg; 
 	
 	public DataServiceLocalPEP() {
 		System.out.println("Initialising local PDP");
-		pdp = new Pdp(XACMLServer.getConfig().getXACMLPdpConfigPath(), XACMLServer.getConfig().getXACMLPolicyDirPath());
+		pdp = new BalanaPdp(XACMLServer.getConfig().getXACMLPdpConfigPath(), XACMLServer.getConfig().getXACMLPolicyDirPath());
 		msg = new StringBuffer();
 	}
 

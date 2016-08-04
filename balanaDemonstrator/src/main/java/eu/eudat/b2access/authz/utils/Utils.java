@@ -1,4 +1,4 @@
-package eu.eudat.b2access.authz;
+package eu.eudat.b2access.authz.utils;
 
 import java.io.StringReader;
 import java.io.StringWriter;

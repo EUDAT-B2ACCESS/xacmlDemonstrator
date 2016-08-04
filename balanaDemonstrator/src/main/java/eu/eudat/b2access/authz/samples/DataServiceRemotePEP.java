@@ -13,7 +13,7 @@ import org.wso2.balana.ctx.xacml3.Result;
 
 import eu.eudat.b2access.authz.AuthorisationException;
 import eu.eudat.b2access.authz.client.PdpClient;
-import eu.eudat.b2access.authz.pdp.Pdp;
+import eu.eudat.b2access.authz.pdp.BalanaPdp;
 import eu.eudat.b2access.authz.server.XACMLServer;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.DecisionType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ObjectFactory;

@@ -7,5 +7,5 @@
 	</pdp>
 	<attributeFactory name="attr" useStandardDatatypes="true" />
 	<functionFactory name="func" useStandardFunctions="true" />
-	<combiningAlgFactory name="comb" useStandardAlgorithms="true" />
+	<combiningAlgFactory name="comb" useStandardAlgorithms="true" />	
 </config>

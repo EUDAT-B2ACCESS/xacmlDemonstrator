@@ -5,8 +5,8 @@ import javax.xml.bind.JAXBElement;
 import org.junit.Test;
 
 import eu.eudat.b2access.authz.TestServerBase;
-import eu.eudat.b2access.authz.Utils;
 import eu.eudat.b2access.authz.server.XACMLServerConfig;
+import eu.eudat.b2access.authz.utils.Utils;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ObjectFactory;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.RequestType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResponseType;
@@ -14,7 +14,7 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.StatusCodeType;
 
 import static org.junit.Assert.*;
 
-public class TestPdpClient /*extends TestServerBase*/ {
+public class TestPdpClient extends TestServerBase {
 	@Test
 	public void test() throws Exception {
 		PdpClient p = new PdpClient(getConfig());

@@ -8,17 +8,17 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBElement;
 
-import eu.eudat.b2access.authz.Utils;
 import eu.eudat.b2access.authz.server.XACMLServer;
+import eu.eudat.b2access.authz.utils.Utils;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.RequestType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResponseType;
 
 @Path("/authorization")
 public class PdpResource {
-	private Pdp p = null;
+	private BalanaPdp p = null;
 
 	public PdpResource() {
-		this.p = new Pdp(XACMLServer.getConfig().getXACMLPdpConfigPath(), XACMLServer.getConfig().getXACMLPolicyDirPath());
+		this.p = new BalanaPdp(XACMLServer.getConfig().getXACMLPdpConfigPath(), XACMLServer.getConfig().getXACMLPolicyDirPath());
 	}
 
 	@POST

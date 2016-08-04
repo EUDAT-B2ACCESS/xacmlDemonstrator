@@ -11,11 +11,14 @@ import eu.eudat.b2access.authz.server.XACMLServerConfig;
 public class DataServiceClient {
 	public static void main(String[] args) throws Exception {
 		XACMLServer server = new XACMLServer("src/main/conf/xacmlServer.config");
-		localClient();
-		remoteClient();
+//		localClient();
+//		remoteClient();
 		remotePdpClient();
 	}
 
+	/***
+	 * Accessing Data Service with remote PDP
+	 */
 	private static void remotePdpClient() {
 		ClientConfig config = new ClientConfig("src/test/conf/client.config");
 		Client client = ClientBuilder.newClient();
@@ -52,7 +55,7 @@ public class DataServiceClient {
 		System.out.println(resultPermit);
 		
 		//Calling the data service with priviliged rights
-		String resultDeny = client.target("http://"+config.getHostname()+":"+config.getPort()).path("/data").queryParam("user", "bob")
+		String resultDeny = client.target("http://"+config.getHostname()+":"+config.getPort()).path("/dataRemotePdp").queryParam("user", "bob")
 				.queryParam("group", "other").request().get(String.class);
 		System.out.println(resultDeny);
 
