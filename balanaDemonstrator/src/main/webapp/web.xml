@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<listener>
+		<listener-class>eu.eudat.b2access.authz.server.AuthzServletContextListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>conf-file</param-name>
+		<param-value>/home/a.memon/aai-dev/xacml/xacmlServer.config</param-value>
+	</context-param>
+
+	<servlet>
+		<servlet-name>B2AccessXacmlApplication</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<!-- <init-param> -->
+		<!-- <param-name>jersey.config.server.provider.packages</param-name> -->
+		<!-- <param-value> -->
+		<!-- org.foo.myresources,org.bar.otherresources -->
+		<!-- </param-value> -->
+		<!-- </init-param> -->
+		<!-- <init-param> -->
+		<!-- <param-name>jersey.config.server.provider.scanning.recursive</param-name> -->
+		<!-- <param-value>false</param-value> -->
+		<!-- </init-param> -->
+		<!-- <param-name>jersey.config.server.provider.classnames</param-name> -->
+		<!-- <param-value> -->
+		<!-- org.foo.myresources.MyDogResource, -->
+		<!-- org.bar.otherresources.MyCatResource -->
+		<!-- </param-value> -->
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>eu.eudat.b2access.authz.server.AuthZJaxrsApplication</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>B2AccessXacmlApplication</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+
+</web-app>
