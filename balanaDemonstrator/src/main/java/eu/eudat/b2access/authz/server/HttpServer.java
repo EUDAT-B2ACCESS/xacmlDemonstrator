@@ -14,6 +14,7 @@ import org.glassfish.jersey.servlet.ServletContainer;
  * @author a.memon
  *
  */
+@Deprecated
 public class HttpServer {
 	//TODO: add SSL functionality
 	Server server = null;

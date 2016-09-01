@@ -18,6 +18,7 @@ import eu.eudat.b2access.authz.utils.PathObservables;
  * @author a.memon
  *
  */
+@Deprecated
 public class XACMLServer {
 	private static Logger log = LogManager.getLogger(XACMLServer.class);
 

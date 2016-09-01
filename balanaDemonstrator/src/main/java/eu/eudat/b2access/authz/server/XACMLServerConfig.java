@@ -14,6 +14,7 @@ public class XACMLServerConfig {
 	public static final String XACML_POLICY_DIR = "b2access.authz.server.xacml.policyDir";
 	public static final String XACML_REMOTE_PDP_HOSTNAME = "b2access.authz.server.xacml.remotePdp.hostname";
 	public static final String XACML_REMOTE_PDP_PORT = "b2access.authz.server.xacml.remotePdp.port";
+	public static final String XACML_REMOTE_PDP_ADDRESS = "b2access.authz.server.xacml.remotePdp.address";
 	
 	private Config conf;
 	private String propsPath;
@@ -36,6 +37,12 @@ public class XACMLServerConfig {
 	public Integer getPort(){
 		return conf.getInt(HTTP_SERVER_PORT);
 	}
+	
+	public String getPdpAddress(){
+		return conf.getString(XACML_REMOTE_PDP_ADDRESS);
+	}
+	
+	
 	public String getXACMLPdpConfigPath(){
 		return conf.getString(XACML_PDP_CONFIG);
 	}

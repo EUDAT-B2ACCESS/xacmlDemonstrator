@@ -18,7 +18,7 @@ import eu.eudat.b2access.authz.pdp.BalanaPdp;
 import eu.eudat.b2access.authz.utils.PathObservables;
 
 /***
- * The class initialises the server configuration and invoke the start-up
+ * It initialises the server configuration and invoke the start-up
  * processes
  * 
  * @author a.memon

@@ -14,6 +14,7 @@ import org.wso2.balana.ctx.xacml3.Result;
 import eu.eudat.b2access.authz.AuthorisationException;
 import eu.eudat.b2access.authz.client.PdpClient;
 import eu.eudat.b2access.authz.pdp.BalanaPdp;
+import eu.eudat.b2access.authz.server.AuthzServletContextListener;
 import eu.eudat.b2access.authz.server.XACMLServer;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.DecisionType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ObjectFactory;
@@ -32,7 +33,7 @@ public class DataServiceRemotePEP {
 	PdpClient pdp;
 	public DataServiceRemotePEP() {
 		System.out.println("Initialising remote PDP");
-		pdp = new PdpClient(XACMLServer.getConfig());
+		pdp = new PdpClient(AuthzServletContextListener.getServerConfig().getPdpAddress());
 		msg = new StringBuffer();
 	}
 

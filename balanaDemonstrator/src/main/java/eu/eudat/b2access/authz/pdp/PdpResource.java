@@ -1,6 +1,7 @@
 package eu.eudat.b2access.authz.pdp;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -8,17 +9,32 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBElement;
 
-import eu.eudat.b2access.authz.server.XACMLServer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import eu.eudat.b2access.authz.server.AuthzServletContextListener;
+import eu.eudat.b2access.authz.server.XACMLServerConfig;
 import eu.eudat.b2access.authz.utils.Utils;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.RequestType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResponseType;
 
 @Path("/authorization")
 public class PdpResource {
+	private static final Logger log = LogManager.getLogger(PdpResource.class);
+	
 	private BalanaPdp p = null;
-
+	
 	public PdpResource() {
-		this.p = new BalanaPdp(XACMLServer.getConfig().getXACMLPdpConfigPath(), XACMLServer.getConfig().getXACMLPolicyDirPath());
+		XACMLServerConfig c = AuthzServletContextListener.getServerConfig();
+		p = new BalanaPdp(c.getXACMLPdpConfigPath(), c.getXACMLPolicyDirPath());
+	}
+
+	@GET
+	@Path("/pdp")
+	@Produces({ MediaType.TEXT_PLAIN })
+	public Response test() {
+		log.trace("Test pdp: OK");
+		return Response.ok().entity("Test Pdp: OK").build();
 	}
 
 	@POST
@@ -40,5 +56,5 @@ public class PdpResource {
 		}
 		return Response.ok().entity(rt).build();
 	}
-	
+
 }

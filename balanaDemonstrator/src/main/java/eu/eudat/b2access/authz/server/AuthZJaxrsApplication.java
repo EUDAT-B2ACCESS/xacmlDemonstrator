@@ -10,6 +10,7 @@ import eu.eudat.b2access.authz.pdp.PdpResource;
 import eu.eudat.b2access.authz.samples.DataService;
 import eu.eudat.b2access.authz.samples.DataServiceWithRemotePDP;
 
+@ApplicationPath("xacml")
 public class AuthZJaxrsApplication extends Application {
 	@Override
 	public Set<Class<?>> getClasses() {

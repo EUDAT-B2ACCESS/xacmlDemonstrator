@@ -1,5 +1,7 @@
 package eu.eudat.b2access.authz.client;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -12,6 +14,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.namespace.QName;
 
+import org.eclipse.jetty.server.handler.AllowSymLinkAliasChecker;
 import org.glassfish.jersey.client.internal.HttpUrlConnector;
 import org.glassfish.jersey.filter.LoggingFilter;
 import org.glassfish.jersey.logging.LoggingFeature;
@@ -25,12 +28,17 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.ResultType;
 
 public class PdpClient {
 	private Client client;
-	private XACMLServerConfig config;
+	private String address;
 
-	public PdpClient(XACMLServerConfig config) {
-		this.config = config;
-		client = ClientBuilder.newClient().register(LoggingFeature.class);
+	public PdpClient(String address) {
+		this.address = address;
 
+		
+		try {
+			client = ClientHelper.IgnoreSSLClient();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String evaluate(String request) throws Exception {
@@ -42,13 +50,21 @@ public class PdpClient {
 
 	public JAXBElement<ResponseType> evaluate(JAXBElement<RequestType> request) throws Exception {
 		Entity<JAXBElement<RequestType>> entity = Entity.entity(request, MediaType.APPLICATION_XML);
-		Response resultPermit = client.target("http://" + config.getHostname() + ":" + config.getPort())
-				.path("/authorization/pdp").request().accept(MediaType.APPLICATION_XML_TYPE).post(entity);
+		Response resultPermit = client.target(address).request().accept(MediaType.APPLICATION_XML_TYPE).post(entity);
+		
 		if (resultPermit.getStatus() == 200) {
-			GenericType<JAXBElement<ResponseType>> genericType = new GenericType<JAXBElement<ResponseType>>(){};
+			GenericType<JAXBElement<ResponseType>> genericType = new GenericType<JAXBElement<ResponseType>>() {
+			};
 			final JAXBElement jaxbElement = resultPermit.readEntity(genericType);
 			return jaxbElement;
 		}
 		return null;
+	}
+	
+	public String testPdp(){
+		Response r = client.target("https://localhost:8445/xacml/authorization/pdp").request().accept(MediaType.TEXT_PLAIN_TYPE).get();
+		String t = r.readEntity(String.class);
+		System.out.println(t);
+		return t;
 	}
 }

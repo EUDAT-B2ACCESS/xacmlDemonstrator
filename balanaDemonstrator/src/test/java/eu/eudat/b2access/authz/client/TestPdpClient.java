@@ -14,10 +14,17 @@ import oasis.names.tc.xacml._3_0.core.schema.wd_17.StatusCodeType;
 
 import static org.junit.Assert.*;
 
-public class TestPdpClient extends TestServerBase {
+/***
+ * Integration test
+ * 
+ * @author a.memon
+ *
+ */
+
+public class TestPdpClient {
 	@Test
-	public void test() throws Exception {
-		PdpClient p = new PdpClient(getConfig());
+	public void testEvaluate() throws Exception {
+		PdpClient p = new PdpClient("https://localhost:8445/xacml/authorization/pdp");
 		JAXBElement<ResponseType> response = p.evaluate((JAXBElement<RequestType>) Utils
 				.StringToJAXBElement(createRequest("alex", "admin", "read", "data"), RequestType.class));
 
@@ -26,7 +33,7 @@ public class TestPdpClient extends TestServerBase {
 	}
 
 	private XACMLServerConfig getConfig() {
-		XACMLServerConfig c = new XACMLServerConfig("src/main/conf/xacmlServer.config");
+		XACMLServerConfig c = new XACMLServerConfig("src/test/conf/client.config");
 		return c;
 	}
 
