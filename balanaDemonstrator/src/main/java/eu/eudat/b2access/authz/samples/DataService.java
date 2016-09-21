@@ -26,7 +26,13 @@ public class DataService {
 
 	@GET
 	@Produces ({ MediaType.TEXT_PLAIN })
-	public Response readRemote(@DefaultValue("bob") @QueryParam("user") String user, @DefaultValue("other") @QueryParam("group") String group) {
+	public Response readRemote(@QueryParam("user") String user, @QueryParam("group") String group) {
+		if (user.isEmpty() || user == null) {
+			return Response.serverError().entity("user information is missing").build();	
+		}
+		if (group.isEmpty() || group == null) {
+			return Response.serverError().entity("group information is missing").build();	
+		}
 		StringBuilder builder = new StringBuilder();
 		try {
 			System.out.println("Invoking local data access....");
