@@ -42,7 +42,6 @@ public class AuthzServletContextListener implements ServletContextListener {
 		if (config == null) {
 			config = new XACMLServerConfig(ctx.getInitParameter(CONFIG_FILE_PARAM));
 		}
-		
 		log.debug("Config directory path: "+config.getConfigDirPath());
 		log.info("XACML policy directory path: "+config.getXACMLPolicyDirPath());
 		log.info("XACML Policy configuration path: "+config.getXACMLPdpConfigPath());

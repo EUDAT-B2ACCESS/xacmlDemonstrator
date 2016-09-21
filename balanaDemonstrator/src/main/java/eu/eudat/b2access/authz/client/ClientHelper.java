@@ -9,6 +9,8 @@ import javax.net.ssl.X509TrustManager;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 
+import org.glassfish.jersey.logging.LoggingFeature;
+
 /**
  * 
  * Helper class to create a {@link Client} that ignores hostname checking
@@ -29,9 +31,8 @@ public class ClientHelper {
 			public X509Certificate[] getAcceptedIssuers() {
 				return new X509Certificate[0];
 			}
-
 		} }, new java.security.SecureRandom());
-		return ClientBuilder.newBuilder().sslContext(sslcontext).hostnameVerifier((s1, s2) -> true).build();
+		return ClientBuilder.newBuilder().sslContext(sslcontext).hostnameVerifier((s1, s2) -> true).register(new LoggingFeature()).build();
 	}
 
 }
