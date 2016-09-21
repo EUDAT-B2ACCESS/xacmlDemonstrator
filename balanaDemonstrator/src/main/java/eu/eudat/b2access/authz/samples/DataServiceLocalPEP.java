@@ -13,6 +13,7 @@ import org.wso2.balana.ctx.xacml3.Result;
 
 import eu.eudat.b2access.authz.AuthorisationException;
 import eu.eudat.b2access.authz.pdp.BalanaPdp;
+import eu.eudat.b2access.authz.server.AuthzServletContextListener;
 import eu.eudat.b2access.authz.server.XACMLServer;
 import eu.eudat.b2access.authz.server.XACMLServerConfig;
 import eu.eudat.b2access.authz.utils.Utils;
@@ -28,7 +29,8 @@ public class DataServiceLocalPEP {
 	
 	public DataServiceLocalPEP() {
 		System.out.println("Initialising local PDP");
-		pdp = new BalanaPdp(XACMLServer.getConfig().getXACMLPdpConfigPath(), XACMLServer.getConfig().getXACMLPolicyDirPath());
+		XACMLServerConfig c = AuthzServletContextListener.getServerConfig();
+		pdp = new BalanaPdp(c.getXACMLPdpConfigPath(), c.getXACMLPolicyDirPath());
 		msg = new StringBuffer();
 	}
 
