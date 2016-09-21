@@ -8,27 +8,12 @@
 
 	<context-param>
 		<param-name>conf-file</param-name>
-		<param-value>/home/a.memon/aai-dev/xacml/xacmlServer.config</param-value>
+		<param-value>/etc/b2access/authz/xacmlServer.config</param-value>
 	</context-param>
 
 	<servlet>
 		<servlet-name>B2AccessXacmlApplication</servlet-name>
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-		<!-- <init-param> -->
-		<!-- <param-name>jersey.config.server.provider.packages</param-name> -->
-		<!-- <param-value> -->
-		<!-- org.foo.myresources,org.bar.otherresources -->
-		<!-- </param-value> -->
-		<!-- </init-param> -->
-		<!-- <init-param> -->
-		<!-- <param-name>jersey.config.server.provider.scanning.recursive</param-name> -->
-		<!-- <param-value>false</param-value> -->
-		<!-- </init-param> -->
-		<!-- <param-name>jersey.config.server.provider.classnames</param-name> -->
-		<!-- <param-value> -->
-		<!-- org.foo.myresources.MyDogResource, -->
-		<!-- org.bar.otherresources.MyCatResource -->
-		<!-- </param-value> -->
 		<init-param>
 			<param-name>javax.ws.rs.Application</param-name>
 			<param-value>eu.eudat.b2access.authz.server.AuthZJaxrsApplication</param-value>
